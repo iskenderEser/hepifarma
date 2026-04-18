@@ -410,6 +410,79 @@
     transition: background 0.2s;
   }
   .drawer-cta:hover { background: #cc4300; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav {
+      padding: 0 20px;
+      height: 64px;
+    }
+    .btn-nav span { display: none; }
+
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 36px 20px 40px;
+      gap: 36px;
+    }
+
+    .hero-left h1 {
+      font-size: 36px;
+      letter-spacing: -1px;
+    }
+
+    .hero-left p {
+      font-size: 14px;
+      max-width: 100%;
+    }
+
+    .cta-row {
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .btn-primary, .btn-outline {
+      width: 100%;
+      justify-content: center;
+      padding: 13px 20px;
+    }
+
+    .cards {
+      width: 100%;
+    }
+
+    .drawer {
+      width: 100%;
+    }
+
+    footer {
+      padding: 36px 20px 44px;
+    }
+
+    .footer-text {
+      font-size: 20px;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .hero {
+      grid-template-columns: 1fr 1fr;
+      padding: 48px 32px;
+      gap: 32px;
+    }
+
+    .hero-left h1 {
+      font-size: 40px;
+    }
+
+    .cards {
+      width: 100%;
+    }
+
+    .drawer {
+      width: 380px;
+    }
+  }
 </style>
 </head>
 <body>
