@@ -75,6 +75,32 @@
   .btn-nav:hover { background: var(--orange-dark); }
 
   /* HERO */
+  .hero-wrapper {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-circle {
+    position: absolute;
+    bottom: -200px;
+    left: -200px;
+    width: 800px;
+    height: 800px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-blob {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 55%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
   .hero {
     max-width: 1200px;
     width: 100%;
@@ -84,7 +110,8 @@
     grid-template-columns: 1fr 420px;
     gap: 64px;
     align-items: center;
-    flex: 1;
+    position: relative;
+    z-index: 1;
   }
 
   .hero-left h1 {
@@ -467,6 +494,79 @@
     .hero-left h1 { font-size: 26px; }
     .btn-nav { padding: 7px 12px; font-size: 12px; }
   }
+
+  /* GLN BAR */
+  .gln-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  .gln-inner {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 50px;
+    padding: 6px 6px 6px 20px;
+    width: 100%;
+    max-width: 560px;
+    transition: border-color 0.2s;
+  }
+
+  .gln-inner:focus-within {
+    border-color: var(--orange);
+  }
+
+  .gln-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    font-family: inherit;
+    color: #102352;
+    font-weight: 300;
+    outline: none;
+    letter-spacing: 1px;
+    min-width: 0;
+    -webkit-text-fill-color: #102352;
+  }
+
+  .gln-input::placeholder {
+    color: var(--text-secondary);
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+
+  .gln-btn {
+    background: var(--orange);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .gln-btn:hover { background: var(--orange-dark); }
+
+  @media (max-width: 768px) {
+    .gln-bar { padding: 12px 16px; }
+    .gln-btn { padding: 9px 16px; font-size: 13px; }
+  }
 </style>
 </head>
 <body>
@@ -484,14 +584,36 @@
   </div>
 </nav>
 
-<section class="hero">
+<div class="gln-bar">
+  <div class="gln-inner">
+    <input class="gln-input" type="text" maxlength="13" placeholder="GLN numaranızı giriniz (13 hane)" oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
+    <button class="gln-btn">
+      Giriş Yap
+      <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="hero-wrapper">
+  <svg class="hero-blob" viewBox="0 0 700 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M700,100 Q580,200 620,350 Q660,500 520,580" fill="none" stroke="#ff5400" stroke-width="2.5" opacity="0.3"/>
+    <path d="M700,160 Q560,260 600,400 Q640,530 480,610" fill="none" stroke="#ff5400" stroke-width="2" opacity="0.22"/>
+    <path d="M700,220 Q540,300 580,440 Q620,560 440,640" fill="none" stroke="#ff5400" stroke-width="1.5" opacity="0.15"/>
+    <path d="M700,50 Q600,150 640,300 Q680,450 560,550" fill="none" stroke="#102352" stroke-width="2" opacity="0.15"/>
+    <path d="M700,280 Q520,340 560,480 Q600,590 400,670" fill="none" stroke="#ff5400" stroke-width="1.5" opacity="0.1"/>
+  </svg>
+  <svg class="hero-circle" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="700" r="520" fill="none" stroke="#ff5400" stroke-width="1.5" opacity="0.12"/>
+    <circle cx="100" cy="700" r="400" fill="none" stroke="#102352" stroke-width="1" opacity="0.08"/>
+  </svg>
+  <section class="hero">
   <div class="hero-left">
     <h1>Eczaneler için komisyonsuz pazaryeri</h1>
     <p>Eczaneden eczaneye, depodan eczaneye, firmadan eczaneye satış yapılırken komisyon ödenmeyen tek pazaryeri</p>
 
     <div class="cta-row">
       <button class="btn-primary" onclick="openRegisterModal()">
-        Ücretsiz Üye Ol
+        Üye Girişi
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M8 4l3 3-3 3" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <button class="btn-outline">
@@ -553,6 +675,7 @@
     </div>
   </div>
 </section>
+</div>
 
 <footer>
   <div class="footer-top">
